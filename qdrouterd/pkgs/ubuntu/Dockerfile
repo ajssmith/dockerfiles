@@ -15,6 +15,8 @@ RUN apt-get install -y \
 
 RUN mkdir /var/lib/qdrouterd
 
-COPY scripts/qdrouterd.conf /etc/qpid-dispatch
+RUN echo secretqpid | saslpasswd2 -c -p -f /var/lib/qdrouterd/qdrouterd.sasldb stackqpid
+
+COPY scripts/qdrouterd.conf /etc/qpid-dispatch/
 
 #ENTRYPOINT ["/usr/sbin/qdrouterd"]

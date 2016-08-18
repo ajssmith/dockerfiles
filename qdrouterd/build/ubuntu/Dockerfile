@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:trusty
 
 MAINTAINER Andy Smith "ansmith@redhat.com"
 
@@ -40,6 +40,8 @@ RUN cmake .. -DCMAKE_INSTALL_PREFIX=/usr && make install
 ENV PYTHONPATH=/usr/lib/python2.7/site-packages
 
 RUN mkdir /var/lib/qdrouterd
+
+RUN echo secretqpid | saslpasswd2 -c -p -f /var/lib/qdrouterd/qdrouterd.sasldb stackqpid
 
 COPY scripts/qdrouterd.conf /etc/qpid-dispatch
 
