@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:trusty
 
 MAINTAINER Andy Smith "ansmith@redhat.com"
 
@@ -23,8 +23,8 @@ RUN pip install --upgrade \
 
 RUN mkdir /main && cd /main && git clone https://git.openstack.org/openstack/oslo.messaging
 
-WORKDIR /main/oslo.messaging
+#WORKDIR /main/oslo.messaging
 
-RUN tox -epy27 -- oslo_messaging.tests.drivers.test_amqp_driver
+#RUN tox -epy27 -- oslo_messaging.tests.drivers.test_amqp_driver
 
-CMD ["/bin/bash"]
+#CMD ["/bin/bash"]
