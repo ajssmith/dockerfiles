@@ -18,4 +18,4 @@ docker network rm $BE_NW
 docker rmi $RTR_IMG
 docker rmi $OM_IMG
 
-#exit $RC
+exit $RC
