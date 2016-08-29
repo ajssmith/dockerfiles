@@ -1,3 +1,6 @@
+#!/bin/bash -ex
+#
+
 # must be run from top level directory for context
 BE_NW=$(docker network create -d bridge --subnet 172.25.0.0/16 be_nw)
 
