@@ -12,4 +12,4 @@ RC=$(sudo docker wait $CONTAINER)
 sudo docker rm -f $CONTAINER
 sudo docker rmi $IMAGE
 
-#exit $RC
+exit $RC
