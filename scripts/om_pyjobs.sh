@@ -1,15 +1,15 @@
 #!/bin/bash -ex
 #
 
-IMAGE=$(docker build ./oslo.messaging/$OS/. | tail -1 | awk '{ print $NF }')
+IMAGE=$(sudo docker build ./oslo.messaging/$OS/. | tail -1 | awk '{ print $NF }')
 
-CONTAINER=$(docker run -d $IMAGE /bin/bash -c 'cd /main/oslo.messaging && tox -epy27 -- oslo_messaging.tests.drivers.test_amqp_driver')
+CONTAINER=$(sudo docker run -d $IMAGE /bin/bash -c 'cd /main/oslo.messaging && tox -epy27 -- oslo_messaging.tests.drivers.test_amqp_driver')
 
-docker attach $CONTAINER
+sudo docker attach $CONTAINER
 
-RC=$(docker wait $CONTAINER)
+RC=$(sudo docker wait $CONTAINER)
 
-docker rm -f $CONTAINER
-docker rmi $IMAGE
+sudo docker rm -f $CONTAINER
+sudo docker rmi $IMAGE
 
-exit $RC
+#exit $RC
