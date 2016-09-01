@@ -2,6 +2,8 @@ FROM centos:latest
 
 Maintainer Andy Smith "ansmith@redhat.com"
 
+USER root
+
 RUN yum -y update && yum -y install \
     gcc \
     cmake \
@@ -40,8 +42,9 @@ RUN cmake .. -DCMAKE_INSTALL_PREFIX=/usr && make install
 
 RUN mkdir /var/lib/qdrouterd
 
-RUN echo secretqpid | saslpasswd2 -c -p -f /var/lib/qdrouterd/qdrouterd.sasldb stackqpid
-
 COPY scripts/qdrouterd.conf /etc/qpid-dispatch
+COPY scripts/qdrouterd_sasl.conf /etc/sasl2/qdrouterd.conf
+
+RUN echo secretqpid | saslpasswd2 -c -p -f /var/lib/qdrouterd/qdrouterd.sasldb stackqpid
 
 #ENTRYPOINT ["/usr/sbin/qdrouterd"]

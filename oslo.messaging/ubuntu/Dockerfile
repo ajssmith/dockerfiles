@@ -22,6 +22,8 @@ RUN pip install --upgrade \
     cffi
 
 RUN mkdir /main && cd /main && git clone https://git.openstack.org/openstack/oslo.messaging
+# remove following when setup script is merged
+RUN cd /main/oslo.messaging && git fetch https://git.openstack.org/openstack/oslo.messaging refs/changes/18/361418/3 && git checkout FETCH_HEAD
 
 #WORKDIR /main/oslo.messaging
 
