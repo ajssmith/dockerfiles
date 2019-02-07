@@ -67,7 +67,7 @@ address {
 }
 
 log {
-    module: default
+    module: DEFAULT
     enable: info+
-    outputFile: /tmp/qdrouterd.log
+    output: /tmp/qdrouterd.log
 }
